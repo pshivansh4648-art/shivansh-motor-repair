@@ -1,0 +1,12 @@
+{
+  "name": "Shivansh Motor Repair",
+  "short_name": "Shivansh Motor",
+  "description": "Hindi-English motor repair guide and personal motor data notebook",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f2f6fa",
+  "theme_color": "#12304a",
+  "icons": [
+    {"src":"logo.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}

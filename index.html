@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#12304a">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<title>Shivansh Motor Repair</title>
+<style>
+:root{--navy:#12304a;--blue:#1769aa;--gold:#f4b942;--bg:#f2f6fa;--ink:#172533;--muted:#607080;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,"Noto Sans",sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(140deg,#10283c,#1769aa);color:white;padding:18px 16px 16px;box-shadow:0 3px 12px #001a2d25}
+.brand{display:flex;gap:12px;align-items:center}.brand img{width:64px;height:64px;border-radius:14px;background:#fff}
+h1{font-size:21px;line-height:1.15;margin:0 0 5px}.subtitle{font-size:12px;opacity:.9}
+.headrow{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-top:14px}
+button,select,input,textarea{font:inherit}button{border:0;border-radius:10px;background:var(--blue);color:#fff;padding:11px 13px;font-weight:700;cursor:pointer}
+button.secondary{background:#e8f1f8;color:var(--navy)}button.gold{background:var(--gold);color:#2a2a2a}
+main{max-width:780px;margin:auto;padding:14px}
+.notice{font-size:13px;line-height:1.45;background:#fff4d7;border-left:4px solid #e2a500;border-radius:8px;padding:11px;margin-bottom:13px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tile{background:white;border:1px solid #e2e9ef;border-radius:14px;text-align:left;color:var(--ink);min-height:105px;padding:13px;box-shadow:0 2px 7px #1630470a}
+.tile .ico{font-size:25px;display:block;margin-bottom:7px}.tile b{display:block;font-size:14px}.tile small{display:block;color:var(--muted);margin-top:5px;font-size:12px}
+.panel{background:white;border-radius:14px;padding:15px;margin-top:14px;box-shadow:0 2px 9px #1630470b}
+.panel h2{font-size:18px;margin:0 0 12px}.panel p,.panel li{font-size:14px;line-height:1.5}
+label{display:block;font-size:13px;font-weight:700;margin:10px 0 5px}
+input,select,textarea{width:100%;border:1px solid #cbd7e1;border-radius:9px;padding:11px;background:#fff;color:var(--ink)}
+textarea{min-height:78px;resize:vertical}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.result{white-space:pre-wrap;line-height:1.5;background:#eaf5ff;border-radius:9px;padding:12px;margin-top:11px;font-size:14px}
+.record{border:1px solid #e2e9ef;padding:10px;border-radius:10px;margin-top:8px;font-size:13px;line-height:1.45;overflow-wrap:anywhere}
+.record button{padding:7px 9px;font-size:12px;margin:5px 4px 0 0}.muted{color:var(--muted);font-size:12px}
+.hidden{display:none!important}footer{text-align:center;padding:22px;color:#657686;font-size:12px}
+@media(max-width:360px){.grid,.row{grid-template-columns:1fr}.brand img{width:54px;height:54px}h1{font-size:18px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="brand"><img src="logo.svg" alt="Shivansh Motor Repair logo"><div><h1>SHIVANSH<br>MOTOR REPAIR</h1><div class="subtitle" id="subtitle">मोटर मिस्त्री की डिजिटल गाइड</div></div></div>
+ <div class="headrow"><span id="headerNote">आपकी जानकारी आपके फोन में सेव होगी</span><button class="gold" onclick="toggleLang()" id="langBtn">English</button></div>
+</header>
+<main>
+<div class="notice" id="notice">📵 यह ऐप ऑफलाइन भी चल सकता है। अपनी वाइंडिंग के सही टर्न/तार साइज के लिए निर्माता डेटा और पुराने कॉइल रिकॉर्ड से पुष्टि करें।</div>
+<div class="grid">
+<button class="tile" onclick="showSection('winding')"><span class="ico">🌀</span><b data-hi="वाइंडिंग गाइड" data-en="Winding Guide">वाइंडिंग गाइड</b><small data-hi="स्लॉट, टर्न, कॉइल पिच, वायर" data-en="Slots, turns, coil pitch, wire">स्लॉट, टर्न, कॉइल पिच, वायर</small></button>
+<button class="tile" onclick="showSection('fault')"><span class="ico">🛠️</span><b data-hi="खराबी पहचानें" data-en="Fault Finding">खराबी पहचानें</b><small data-hi="लक्षण और शुरुआती जाँच" data-en="Symptoms and first checks">लक्षण और शुरुआती जाँच</small></button>
+<button class="tile" onclick="showSection('calc')"><span class="ico">📐</span><b data-hi="मोटर कैलकुलेटर" data-en="Motor Calculator">मोटर कैलकुलेटर</b><small data-hi="HP से kW, RPM से पोल" data-en="HP to kW, RPM to poles">HP से kW, RPM से पोल</small></button>
+<button class="tile" onclick="showSection('starter')"><span class="ico">🔌</span><b data-hi="स्टार्टर/कनेक्शन" data-en="Starters/Connections">स्टार्टर/कनेक्शन</b><small data-hi="स्टार, डेल्टा, स्टार-डेल्टा" data-en="Star, delta, star-delta">स्टार, डेल्टा, स्टार-डेल्टा</small></button>
+<button class="tile" onclick="showSection('tools')"><span class="ico">🔬</span><b data-hi="मेगर और मल्टीमीटर" data-en="Megger & Multimeter">मेगर और मल्टीमीटर</b><small data-hi="टेस्टिंग की मूल जानकारी" data-en="Testing basics">टेस्टिंग की मूल जानकारी</small></button>
+<button class="tile" onclick="showSection('safety')"><span class="ico">⚠️</span><b data-hi="सुरक्षा नियम" data-en="Safety Rules">सुरक्षा नियम</b><small data-hi="बिजली का काम सुरक्षित करें" data-en="Electrical safety">बिजली का काम सुरक्षित करें</small></button>
+</div>
+<section class="panel" id="content"><h2 id="welcome">नमस्ते भाई! 👋</h2><p id="welcomeText">ऊपर विषय चुनें या नीचे अपनी मोटर का डेटा सेव करें।</p></section>
+
+<section class="panel">
+<h2 data-hi="अपना मोटर डेटा सेव करें" data-en="Save Your Motor Data">अपना मोटर डेटा सेव करें</h2>
+<p class="muted" data-hi="यह रिकॉर्ड इसी ब्राउज़र/फोन में रहेगा। नियमित बैकअप डाउनलोड करें।" data-en="Records stay in this browser/on this phone. Download backups regularly.">यह रिकॉर्ड इसी ब्राउज़र/फोन में रहेगा। नियमित बैकअप डाउनलोड करें।</p>
+<label data-hi="रिकॉर्ड का नाम / ग्राहक" data-en="Record name / customer">रिकॉर्ड का नाम / ग्राहक</label><input id="rname" placeholder="जैसे: शर्मा जी 5 HP ओपनवेल">
+<div class="row">
+<div><label data-hi="मोटर का प्रकार" data-en="Motor type">मोटर का प्रकार</label><select id="rtype"><option>3-Phase Induction</option><option>Single Phase</option><option>Submersible Borewell</option><option>Openwell</option><option>Cooler/Fan</option><option>Other</option></select></div>
+<div><label>HP</label><input id="rhp" type="number" step="0.1" placeholder="5"></div>
+</div>
+<div class="row"><div><label>Voltage (V)</label><input id="rvolt" type="number" placeholder="415"></div><div><label>RPM</label><input id="rrpm" type="number" placeholder="2900"></div></div>
+<div class="row"><div><label data-hi="स्लॉट संख्या" data-en="Slot count">स्लॉट संख्या</label><input id="rslots" type="number" placeholder="24"></div><div><label data-hi="पोल" data-en="Poles">पोल</label><input id="rpoles" type="number" placeholder="2"></div></div>
+<div class="row"><div><label data-hi="वायर साइज" data-en="Wire size">वायर साइज</label><input id="rwire" placeholder="जैसे SWG / mm"></div><div><label data-hi="कॉइल टर्न" data-en="Coil turns">कॉइल टर्न</label><input id="rturns" placeholder="अपना डेटा लिखें"></div></div>
+<label data-hi="कनेक्शन / कॉइल पिच / खराबी / नोट्स" data-en="Connection / coil pitch / fault / notes">कनेक्शन / कॉइल पिच / खराबी / नोट्स</label><textarea id="rnotes" placeholder="स्टार/डेल्टा, कॉइल पिच, करंट, मरम्मत आदि"></textarea>
+<div class="actions"><button onclick="saveRecord()" id="saveBtn">रिकॉर्ड सेव करें</button><button class="secondary" onclick="clearForm()" id="clearBtn">फॉर्म साफ करें</button></div>
+</section>
+<section class="panel">
+<h2 data-hi="मेरे सेव किए रिकॉर्ड" data-en="My Saved Records">मेरे सेव किए रिकॉर्ड</h2>
+<div class="actions"><button onclick="exportData()" class="secondary" id="exportBtn">बैकअप डाउनलोड करें</button><button onclick="document.getElementById('importFile').click()" class="secondary" id="importBtn">बैकअप वापस लाएँ</button><button onclick="document.getElementById('importFile').click()" class="secondary hidden" id="importBtn2">Import</button></div>
+<input id="importFile" class="hidden" type="file" accept=".json,application/json" onchange="importData(event)">
+<div id="records"></div>
+</section>
+<footer>Shivansh Motor Repair • Mobile-first • Offline-capable</footer>
+</main>
+<script>
+let lang='hi'; const $=id=>document.getElementById(id);
+const dbKey='shivanshMotorRecordsV1';
+const pages={
+winding:{title:['वाइंडिंग गाइड','Winding Guide'],hi:'<p><b>रिकॉर्ड में क्या रखें?</b> HP, वोल्टेज, स्लॉट, पोल, RPM, स्टेटर कोर की लंबाई/बोर, कॉइल पिच, टर्न, वायर गेज और कनेक्शन। पुराने कॉइल खोलते समय हर समूह का डेटा लिखें और फोटो रखें।</p><p>⚠️ केवल HP या स्लॉट से सही टर्न/वायर साइज तय नहीं होता। निर्माता चार्ट/मूल डेटा से पुष्टि करें।</p>',en:'<p><b>Record:</b> HP, voltage, slots, poles, RPM, core length/bore, coil pitch, turns, wire gauge and connections. Note each coil group and photograph the original winding before removal.</p><p>⚠️ HP or slot count alone cannot determine exact turns or wire size. Verify manufacturer/original data.</p>'},
+fault:{title:['खराबी पहचानें','Fault Finding'],hi:'<label>लक्षण चुनें</label><select id="sym"><option value="slow">स्पीड कम</option><option value="hot">मोटर गर्म</option><option value="trip">स्टार्टर ट्रिप</option><option value="start">चालू नहीं होती</option><option value="noise">आवाज/कंपन</option></select><button onclick="diagnose()" style="margin-top:10px">जाँच दिखाएँ</button><div id="diag" class="result"></div>',en:'<label>Select symptom</label><select id="sym"><option value="slow">Low speed</option><option value="hot">Overheating</option><option value="trip">Starter trips</option><option value="start">Does not start</option><option value="noise">Noise/vibration</option></select><button onclick="diagnose()" style="margin-top:10px">Show checks</button><div id="diag" class="result"></div>'},
+calc:{title:['मोटर कैलकुलेटर','Motor Calculator'],hi:'<label>HP</label><input id="chp" type="number" placeholder="5"><label>RPM</label><input id="crpm" type="number" placeholder="2900"><button onclick="calculate()" style="margin-top:10px">गणना करें</button><div id="cres" class="result"></div><p>करंट का सही मान नेमप्लेट, वोल्टेज, दक्षता और पावर फैक्टर पर निर्भर करता है।</p>',en:'<label>HP</label><input id="chp" type="number" placeholder="5"><label>RPM</label><input id="crpm" type="number" placeholder="2900"><button onclick="calculate()" style="margin-top:10px">Calculate</button><div id="cres" class="result"></div><p>Actual current depends on nameplate, voltage, efficiency and power factor.</p>'},
+starter:{title:['स्टार्टर और कनेक्शन','Starters & Connections'],hi:'<p><b>स्टार-डेल्टा:</b> योग्य मोटर में स्टार्टिंग स्टार में और रनिंग डेल्टा में होती है। नेमप्लेट पर वोल्टेज और 6 टर्मिनल उपलब्ध होना जाँचें। हर मोटर पर स्टार-डेल्टा लागू नहीं होता।</p><p>गलत कनेक्शन से मोटर/स्टार्टर खराब हो सकता है। सप्लाई अलग करके ही वायरिंग करें।</p>',en:'<p><b>Star-delta:</b> Suitable motors start in star and run in delta. Check nameplate voltage and six accessible terminals. Star-delta is not suitable for every motor.</p><p>Incorrect wiring can damage equipment. Isolate power before wiring.</p>'},
+tools:{title:['मेगर और मल्टीमीटर','Megger & Multimeter'],hi:'<p><b>मल्टीमीटर:</b> सप्लाई बंद करके continuity/resistance जाँचें।</p><p><b>मेगर:</b> मोटर को सप्लाई और इलेक्ट्रॉनिक कंट्रोल से अलग करें। निर्माता के अनुसार test voltage चुनें; संवेदनशील उपकरणों को मेगर न लगाएँ।</p>',en:'<p><b>Multimeter:</b> Isolate supply before continuity/resistance checks.</p><p><b>Megger:</b> Disconnect motor from supply and electronic controls. Choose test voltage according to manufacturer instructions; do not megger sensitive electronics.</p>'},
+safety:{title:['सुरक्षा नियम','Safety Rules'],hi:'<ul><li>मेन सप्लाई बंद और लॉक करें।</li><li>उपयुक्त टेस्टर से वोल्टेज न होने की पुष्टि करें।</li><li>PPE पहनें और गीले हाथों से काम न करें।</li><li>कैपेसिटर सुरक्षित रूप से डिस्चार्ज करें।</li><li>लाइव 3-फेज काम प्रशिक्षित/योग्य व्यक्ति ही करे।</li></ul>',en:'<ul><li>Isolate and lock out the mains.</li><li>Verify absence of voltage with a suitable tester.</li><li>Use PPE; keep hands dry.</li><li>Discharge capacitors safely.</li><li>Live three-phase work is for qualified personnel only.</li></ul>'}
+};
+function toggleLang(){lang=lang==='hi'?'en':'hi';$('langBtn').textContent=lang==='hi'?'English':'हिंदी';$('subtitle').textContent=lang==='hi'?'मोटर मिस्त्री की डिजिटल गाइड':'Digital guide for motor technicians';$('headerNote').textContent=lang==='hi'?'आपकी जानकारी आपके फोन में सेव होगी':'Your data is saved on this phone';$('notice').textContent=lang==='hi'?'📵 यह ऐप ऑफलाइन भी चल सकता है। अपनी वाइंडिंग के सही टर्न/तार साइज के लिए निर्माता डेटा और पुराने कॉइल रिकॉर्ड से पुष्टि करें।':'📵 This app can work offline. Verify winding turns and wire size using manufacturer data and original coil records.';document.querySelectorAll('[data-hi]').forEach(e=>e.textContent=e.getAttribute(lang==='hi'?'data-hi':'data-en'));$('saveBtn').textContent=lang==='hi'?'रिकॉर्ड सेव करें':'Save Record';$('clearBtn').textContent=lang==='hi'?'फॉर्म साफ करें':'Clear Form';$('exportBtn').textContent=lang==='hi'?'बैकअप डाउनलोड करें':'Download Backup';$('importBtn').textContent=lang==='hi'?'बैकअप वापस लाएँ':'Restore Backup';$('welcome').textContent=lang==='hi'?'नमस्ते भाई! 👋':'Welcome! 👋';$('welcomeText').textContent=lang==='hi'?'ऊपर विषय चुनें या नीचे अपनी मोटर का डेटा सेव करें।':'Choose a guide above or save your own motor data below.';renderRecords();}
+function showSection(k){let p=pages[k];$('content').innerHTML='<h2>'+p.title[lang==='hi'?0:1]+'</h2>'+(lang==='hi'?p.hi:p.en);$('content').scrollIntoView({behavior:'smooth'});}
+function diagnose(){let v=$('sym').value,hi=lang==='hi';let d={
+slow:hi?'• सप्लाई वोल्टेज और तीनों फेज का संतुलन जाँचें।\\n• पंप/लोड जाम तो नहीं।\\n• कनेक्शन, winding data और करंट जाँचें।':'• Check supply voltage and phase balance.\\n• Check for jammed pump/load.\\n• Check connections, winding data and current.',
+hot:hi?'• ओवरलोड और वास्तविक करंट जाँचें।\\n• वोल्टेज असंतुलन, कूलिंग और बेयरिंग देखें।\\n• इंसुलेशन टेस्ट योग्य व्यक्ति से कराएँ।':'• Check overload and measured current.\\n• Check voltage imbalance, cooling and bearings.\\n• Have insulation tested by a qualified person.',
+trip:hi?'• ओवरलोड सेटिंग बनाम वास्तविक करंट जाँचें।\\n• फेज गायब, ढीले टर्मिनल, शॉर्ट/अर्थ फॉल्ट देखें।':'• Compare overload setting with current.\\n• Check phase loss, loose terminals, short/earth faults.',
+start:hi?'• सप्लाई, फ्यूज और कॉन्टैक्टर जाँचें।\\n• सिंगल फेज में कैपेसिटर/स्विच जाँचें।\\n• शाफ्ट जाम और winding continuity देखें।':'• Check supply, fuses and contactor.\\n• Check capacitor/switch on single phase.\\n• Check jammed shaft and winding continuity.',
+noise:hi?'• बेयरिंग/बुश, शाफ्ट अलाइनमेंट और फाउंडेशन देखें।\\n• इम्पेलर रगड़ और कंपन जाँचें।':'• Check bearings/bushes, shaft alignment and foundation.\\n• Check impeller rubbing and vibration.'};$('diag').textContent=d[v]+'\\n\\n'+(hi?'सुरक्षा: पहले सप्लाई अलग करें।':'Safety: isolate power first.');}
+function calculate(){let hp=Number($('chp').value),rpm=Number($('crpm').value),out=[];if(hp>0)out.push((lang==='hi'?'लगभग शक्ति: ':'Approx. power: ')+(hp*.746).toFixed(3)+' kW');if(rpm>0){let p=[2,4,6,8,10,12].map(p=>({p,s:6000/p})).sort((a,b)=>Math.abs(a.s-rpm)-Math.abs(b.s-rpm))[0];out.push((lang==='hi'?'50 Hz पर नजदीकी सिंक्रोनस स्पीड: ':'Nearest synchronous speed at 50 Hz: ')+p.s+' RPM, '+p.p+' poles. '+(lang==='hi'?'इंडक्शन मोटर की वास्तविक RPM स्लिप के कारण कम होती है।':'Actual induction motor RPM is lower due to slip.'));}$('cres').textContent=out.length?out.join('\\n'):(lang==='hi'?'HP या RPM डालें।':'Enter HP or RPM.');}
+function getRecords(){try{return JSON.parse(localStorage.getItem(dbKey)||'[]')}catch(e){return []}}
+function saveRecord(){let rec={id:Date.now(),date:new Date().toLocaleString(),name:$('rname').value,type:$('rtype').value,hp:$('rhp').value,voltage:$('rvolt').value,rpm:$('rrpm').value,slots:$('rslots').value,poles:$('rpoles').value,wire:$('rwire').value,turns:$('rturns').value,notes:$('rnotes').value};if(!rec.name&&!rec.hp&&!rec.slots&&!rec.notes){alert(lang==='hi'?'कम से कम नाम या कुछ मोटर डेटा डालें।':'Enter a name or some motor data first.');return;}let a=getRecords();a.unshift(rec);try{localStorage.setItem(dbKey,JSON.stringify(a));clearForm();renderRecords();alert(lang==='hi'?'रिकॉर्ड सेव हो गया।':'Record saved.')}catch(e){alert(lang==='hi'?'फोन की स्टोरेज में जगह कम है। बैकअप लेकर कुछ रिकॉर्ड हटाएँ।':'Phone storage is full. Export a backup and remove some records.');}}
+function clearForm(){['rname','rhp','rvolt','rrpm','rslots','rpoles','rwire','rturns','rnotes'].forEach(id=>$(id).value='');}
+function deleteRecord(id){if(!confirm(lang==='hi'?'यह रिकॉर्ड हटाएँ?':'Delete this record?'))return;localStorage.setItem(dbKey,JSON.stringify(getRecords().filter(r=>r.id!==id)));renderRecords();}
+function renderRecords(){let a=getRecords();$('records').innerHTML='';if(!a.length){$('records').innerHTML='<p class="muted">'+(lang==='hi'?'अभी कोई रिकॉर्ड नहीं।':'No saved records yet.')+'</p>';return;}a.forEach(r=>{let d=document.createElement('div');d.className='record';let details=[r.type,r.hp?r.hp+' HP':'',r.voltage?r.voltage+' V':'',r.rpm?r.rpm+' RPM':'',r.slots?r.slots+' slots':'',r.poles?r.poles+' poles':'',r.wire?'Wire: '+r.wire:'',r.turns?'Turns: '+r.turns:'',r.notes].filter(Boolean).join(' • ');d.innerHTML='<b></b><div></div><small class="muted"></small><br><button class="secondary"></button>';d.children[0].textContent=r.name||'Motor record';d.children[1].textContent=details;d.children[2].textContent=r.date||'';d.querySelector('button').textContent=lang==='hi'?'रिकॉर्ड हटाएँ':'Delete record';d.querySelector('button').onclick=()=>deleteRecord(r.id);$('records').appendChild(d);});}
+function exportData(){let blob=new Blob([JSON.stringify({app:'Shivansh Motor Repair',version:1,records:getRecords()},null,2)],{type:'application/json'});let url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='shivansh-motor-backup.json';a.click();URL.revokeObjectURL(url);}
+function importData(ev){let f=ev.target.files[0];if(!f)return;let rd=new FileReader();rd.onload=()=>{try{let x=JSON.parse(rd.result),incoming=Array.isArray(x)?x:x.records;if(!Array.isArray(incoming))throw Error('format');if(!confirm((lang==='hi'?'बैकअप के ':'Import ')+incoming.length+(lang==='hi'?' रिकॉर्ड जोड़ें?':' records?')))return;let old=getRecords(),ids=new Set(old.map(r=>String(r.id)));incoming.forEach(r=>{if(!ids.has(String(r.id))){r.id=r.id||Date.now()+Math.random();old.push(r)}});localStorage.setItem(dbKey,JSON.stringify(old));renderRecords();alert(lang==='hi'?'बैकअप इम्पोर्ट हो गया।':'Backup imported.')}catch(e){alert(lang==='hi'?'यह सही बैकअप फाइल नहीं है।':'This is not a valid backup file.')}ev.target.value='';};rd.readAsText(f);}
+if('serviceWorker' in navigator && location.protocol!=='file:'){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}
+renderRecords();
+</script>
+</body></html>
